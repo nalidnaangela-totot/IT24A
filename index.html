@@ -39,6 +39,9 @@ function addTaskItem(taskItemText){
     const doneBtn = createDoneButton(li);
     li.appendChild(doneBtn);
 
+    const editBtn = createEditButton(li,taskSpan);
+    li.appendChild(editBtn);
+
 }
 function createDoneButton (li){
     const doneBtn = document.createElement("button");
@@ -50,12 +53,20 @@ function createDoneButton (li){
         const buttons =li.querySelectorAll("button");
 
         buttons.forEach(btn =>{
-            btn.disabled.true;
+            btn.disabled = true;
         });
     console.log("Task Completed", li.textContent, Date())
     }
     return doneBtn;
 }
+function createEditButton(li,taskSpan){
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+    editBtn.style.marginLeft ="8px";
+    editBtn.onclick =() =>handledEditClick(li);
+    return editBtn;
+}
+
     </script>
 
 </body>
