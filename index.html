@@ -42,6 +42,10 @@ function addTaskItem(taskItemText){
     const editBtn = createEditButton(li,taskSpan);
     li.appendChild(editBtn);
 
+    
+const deleteBtn = createDeleteButton(li);
+li.appendChild(deleteBtn);
+
 }
 function createDoneButton (li){
     const doneBtn = document.createElement("button");
@@ -59,15 +63,40 @@ function createDoneButton (li){
     }
     return doneBtn;
 }
-function createEditButton(li,taskSpan){
+
+function createEditButton(li, taskSpan){
     const editBtn = document.createElement("button");
     editBtn.textContent = "Edit";
-    editBtn.style.marginLeft ="8px";
-    editBtn.onclick =() =>handledEditClick(li);
+    editBtn.style.marginLeft = "8px";
+    editBtn.onclick = () => handleEditClick(li);
     return editBtn;
 }
 
-    </script>
+function handleEditClick(li){
+    const currentText = li.firstChild.textContent.trim();
+    const newText = prompt("Edit your task", currentText);
+
+    if (newText !== null && newText.trim() !== "") {
+        li.firstChild.textContent = newText.trim();
+        alert("Updated task");
+    } else {
+        alert("No changes made");
+    }
+}
+
+function createDeleteButton(li){
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.style.marginLeft = "8px";
+    deleteBtn.onclick = () => handleDeleteClick(li);
+    return deleteBtn;
+}
+
+function handleDeleteClick(li){
+    li.remove();
+    alert("Task deleted");
+}
+</script>
 
 </body>
 </html>
