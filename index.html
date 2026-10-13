@@ -33,12 +33,21 @@
    function initMap(mapDataUrl) {
     const map = L.map('map').setView([8.360, 124.868], 17);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //OpenStreetMap layer
+    const openStreetMap=  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
        maxZoom: 19,
        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-    //Render pins
-     fetch(mapDataUrl)
+    });
+
+    //Satellite layer
+    const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles (c) Esri -, Maxar , Earthstar Geographics, and the GIS User Community'}
+    );
+
+    satellite.addTo(map);
+
+    //Render Pins
+    fetch(mapDataUrl)
      .then(response=>response.json())
      .then(data=>{
        
