@@ -14,10 +14,10 @@
 </head>
 <style>
     #map {
-        height: 500px;
+        height: 800px;
     }
     .popup-image{
-       max-width: 200px;
+       max-width: 800px;
         height: auto;
         object-fit: fill;
     }
@@ -62,7 +62,13 @@
 
         });
 
-       
+        //Layer Control
+        const baseMaps = {
+            "OpenStreetMap": openStreetMap,
+            "Satellite": satellite
+        };
+
+        L.control.layers(baseMaps).addTo(map);
      });
    }
    
